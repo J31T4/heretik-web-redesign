@@ -1,0 +1,151 @@
+---
+import { page, asset } from '../utils/paths.js';
+---
+
+<footer class="footer-redesign">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href={page('/')} class="footer__logo-link">
+          <img src={asset('/logo.svg')} alt="SHŠ Heretik" class="footer__logo" />
+        </a>
+        <p class="footer__tagline">
+          Umění, které přežívá století.
+        </p>
+      </div>
+      
+      <nav class="footer__nav">
+        <h4 class="footer__nav-title">Navigace</h4>
+        <ul class="footer__links">
+          <li><a href={page('/')}>Domů</a></li>
+          <li><a href={page('/o-nas')}>O nás</a></li>
+          <li><a href={page('/galerie')}>Galerie</a></li>
+          <li><a href={page('/akce')}>Akce</a></li>
+          <li><a href={page('/kontakt')}>Kontakt</a></li>
+        </ul>
+      </nav>
+      
+      <div class="footer__contact">
+        <h4 class="footer__nav-title">Kontakt</h4>
+        <p class="footer__email">
+          <a href="mailto:info@shsheretik.cz">info@shsheretik.cz</a>
+        </p>
+        <p class="footer__location">
+          Mohelnice, Česká republika
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        © {new Date().getFullYear()} SHŠ Heretik. Všechna práva vyhrazena.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-redesign {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    padding: 5rem 0 2rem;
+  }
+  
+  .footer__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+  .footer__brand {
+    max-width: 300px;
+  }
+  
+  .footer__logo-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer__logo {
+    height: 72px;
+    width: auto;
+    filter: drop-shadow(0 0 12px rgba(196, 145, 58, 0.3));
+  }
+  
+  .footer__tagline {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  
+  .footer__nav-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer__links {
+    list-style: none;
+  }
+  
+  .footer__links li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer__links a {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: color 0.3s var(--ease);
+  }
+  
+  .footer__links a:hover {
+    color: var(--accent);
+  }
+  
+  .footer__email {
+    margin-bottom: 1rem;
+  }
+  
+  .footer__email a {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  .footer__email a:hover {
+    color: var(--accent);
+  }
+  
+  .footer__location {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+  
+  .footer__bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  
+  .footer__copyright {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+  
+  @media (max-width: 768px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .footer__brand {
+      max-width: none;
+    }
+  }
+</style>

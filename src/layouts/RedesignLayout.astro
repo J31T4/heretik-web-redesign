@@ -20,6 +20,20 @@ const { title, description = 'Historický a scénický šerm z Mohelnice. Uměn�
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <title>{title} | SHŠ Heretik</title>
+  <script>
+    // Scroll reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal, .stagger');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 </head>
 <body>
   <slot />

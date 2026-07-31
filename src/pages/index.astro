@@ -1,14 +1,20 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
-import GalleryPreview from '../components/GalleryPreview.astro';
-import CTA from '../components/CTA.astro';
+import RedesignLayout from '../layouts/RedesignLayout.astro';
+import RedesignHeader from '../components/RedesignHeader.astro';
+import RedesignHero from '../components/RedesignHero.astro';
+import RedesignManifesto from '../components/RedesignManifesto.astro';
+import RedesignGallery from '../components/RedesignGallery.astro';
+import RedesignCTA from '../components/RedesignCTA.astro';
+import RedesignFooter from '../components/RedesignFooter.astro';
 ---
 
-<BaseLayout title="Domů">
-  <Hero />
-  <Services />
-  <GalleryPreview />
-  <CTA />
-</BaseLayout>
+<RedesignLayout title="Domů">
+  <RedesignHeader />
+  <main>
+    <RedesignHero />
+    <RedesignManifesto />
+    <RedesignGallery />
+    <RedesignCTA />
+  </main>
+  <RedesignFooter />
+</RedesignLayout>

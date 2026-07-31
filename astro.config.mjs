@@ -4,6 +4,6 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://j31t4.github.io',
-  base: '/heretik-web',
+  base: '/heretik-web-redesign',
   trailingSlash: 'never',
 });

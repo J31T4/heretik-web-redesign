@@ -1,0 +1,121 @@
+---
+const manifesto = [
+  {
+    title: 'Historický šerm',
+    description: 'Autentické vystoupení inspirované dochovanými učebnicemi starých mistrů. Studujeme techniky, které přežily staletí, a oživujeme je s respektem k tradici.',
+    icon: '⚔️',
+  },
+  {
+    title: 'Scénická vystoupení',
+    description: 'Propojení šermu s divadelním uměním. Od commedie dell\'arte po fantastické příběhy – tvoříme vlastní choreografie, které vyprávějí příběhy.',
+    icon: '🎭',
+  },
+  {
+    title: 'Choreografie na míru',
+    description: 'Připravíme vystoupení pro městské slavnosti, historické dny, plesy, firemní večírky, oslavy, tábory i školní programy. Každá akce je jedinečná.',
+    icon: '✨',
+  },
+];
+---
+
+<section class="manifesto section">
+  <div class="container">
+    <div class="manifesto__header reveal">
+      <p class="section-label">Naše umění</p>
+      <h2 class="section-title">Co děláme</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">
+        Oživujeme historii skrze šerm, divadlo a příběhy. Každé vystoupení je spojení 
+        techniky, vášeň a respektu k tradici.
+      </p>
+    </div>
+    
+    <div class="manifesto__grid stagger">
+      {manifesto.map((item, index) => (
+        <article class={`manifesto__card manifesto__card--${index + 1}`}>
+          <div class="manifesto__icon">{item.icon}</div>
+          <h3 class="manifesto__title">{item.title}</h3>
+          <p class="manifesto__description">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto {
+    background: var(--bg);
+    padding: clamp(5rem, 12vw, 10rem) 0;
+  }
+  
+  .manifesto__header {
+    margin-bottom: 5rem;
+    max-width: 600px;
+  }
+  
+  .manifesto__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  
+  .manifesto__card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    transition: all 0.4s var(--ease);
+    position: relative;
+  }
+  
+  .manifesto__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  
+  .manifesto__card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  
+  .manifesto__card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .manifesto__icon {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .manifesto__title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+  
+  .manifesto__description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+  
+  @media (max-width: 900px) {
+    .manifesto__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .manifesto__card {
+      padding: 2.5rem 2rem;
+    }
+  }
+</style>

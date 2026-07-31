@@ -1,5 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import RedesignLayout from '../layouts/RedesignLayout.astro';
+import RedesignHeader from '../components/RedesignHeader.astro';
+import RedesignFooter from '../components/RedesignFooter.astro';
 import { asset } from '../utils/paths.js';
 
 const images = [
@@ -14,103 +16,132 @@ const images = [
 ];
 ---
 
-<BaseLayout title="Galerie" description="Fotogalerie z vystoupení SHŠ Heretik.">
-  <section class="page-hero">
-    <div class="container">
-      <h1>GALERIE</h1>
-      <p>Fotky z našich vystoupení</p>
-    </div>
-  </section>
-  
-  <section class="gallery section">
-    <div class="container">
-      <div class="gallery__grid">
-        {images.map((src, index) => (
-          <div class="gallery__item">
-            <img src={src} alt={`Fotografie z vystoupení ${index + 1}`} loading="lazy" />
-          </div>
-        ))}
-      </div>
-      
-      <div class="gallery__info">
-        <h2>Videa připravujeme</h2>
-        <p>
-          Pracujeme na videosekvencích z našich vystoupení. Brzy je zde přidáme, 
-          abyste si mohli užít atmosféru i z pohyblivých záznamů.
+<RedesignLayout title="Galerie">
+  <RedesignHeader />
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label reveal">Galerie</p>
+        <h1 class="page-title reveal">Okamžiky<br/>v pohybu</h1>
+        <div class="divider reveal"></div>
+        <p class="page-subtitle reveal">
+          Každá fotka zachycuje okamžik, kdy se historie setkává s přítomností. 
+          Najeďte myší a sledujte, jak ožívá barva.
         </p>
       </div>
-    </div>
-  </section>
-</BaseLayout>
+    </section>
+
+    <section class="gallery section">
+      <div class="container">
+        <div class="gallery__grid stagger">
+          {images.map((src, index) => (
+            <div class="gallery__item">
+              <img src={src} alt={`Vystoupení ${index + 1}`} loading="lazy" />
+            </div>
+          ))}
+        </div>
+
+        <div class="gallery__info reveal">
+          <h2 class="gallery__info-title">Videa připravujeme</h2>
+          <p class="gallery__info-text">
+            Pracujeme na videosekvencích z našich vystoupení. Brzy je zde přidáme, 
+            abyste si mohli užít atmosféru i z pohyblivých záznamů.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <RedesignFooter />
+</RedesignLayout>
 
 <style>
   .page-hero {
+    background: var(--bg);
     padding: 10rem 0 4rem;
-    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%);
-    text-align: center;
   }
   
-  .page-hero h1 {
+  .page-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
   }
   
-  .page-hero p {
-    color: var(--color-text-muted);
-    font-size: 1.25rem;
+  .page-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 560px;
+  }
+  
+  .gallery {
+    background: var(--bg-deep);
+    padding: clamp(4rem, 10vw, 8rem) 0;
   }
   
   .gallery__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 5rem;
   }
   
   .gallery__item {
-    aspect-ratio: 1;
+    position: relative;
     overflow: hidden;
-    border-radius: var(--radius-lg);
-    transition: all var(--transition);
-  }
-  
-  .gallery__item:hover {
-    transform: scale(1.02);
+    border-radius: 4px;
+    cursor: pointer;
+    aspect-ratio: 1;
   }
   
   .gallery__item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.3s ease;
+    filter: grayscale(100%) brightness(0.8);
+    transition: filter 0.6s var(--ease), transform 0.6s var(--ease);
   }
   
   .gallery__item:hover img {
-    filter: brightness(1.1);
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.05);
   }
   
   .gallery__info {
     text-align: center;
-    padding: 3rem 2rem;
-    background: var(--color-surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
-  }
-  
-  .gallery__info h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .gallery__info p {
-    color: var(--color-text-muted);
-    max-width: 600px;
+    padding: 4rem 3rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    max-width: 700px;
     margin: 0 auto;
   }
   
-  @media (max-width: 640px) {
+  .gallery__info-title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .gallery__info-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 900px) {
     .gallery__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 8rem 0 3rem;
     }
   }
 </style>
