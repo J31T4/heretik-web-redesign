@@ -185,32 +185,35 @@ img {
   margin: 2rem 0;
 }
 
-/* Scroll reveal animation */
-.reveal {
+/* Scroll reveal animation - progressive enhancement
+   Content is visible by default. JS adds .enhanced class to <html>
+   which enables the reveal animations. This ensures content works
+   without JS (important for presentations and headless renderers). */
+html.enhanced .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 
-.reveal.visible {
+html.enhanced .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.stagger > * {
+html.enhanced .stagger > * {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
-.stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-.stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
-.stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
-.stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
-.stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
-.stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+html.enhanced .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+html.enhanced .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+html.enhanced .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+html.enhanced .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+html.enhanced .stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+html.enhanced .stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
 
-.stagger.visible > * {
+html.enhanced .stagger.visible > * {
   opacity: 1;
   transform: translateY(0);
 }

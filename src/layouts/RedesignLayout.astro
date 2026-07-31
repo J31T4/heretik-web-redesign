@@ -21,18 +21,29 @@ const { title, description = 'Historický a scénický šerm z Mohelnice. Uměn�
   <meta property="og:type" content="website" />
   <title>{title} | SHŠ Heretik</title>
   <script>
-    // Scroll reveal
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.reveal, .stagger');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach(el => observer.observe(el));
-    });
+    // Progressive enhancement: opt into animations
+    document.documentElement.classList.add('enhanced');
+    
+    // Scroll reveal with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // one-shot
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
+    
+    // Safety fallback: force-show all elements after 2.5s
+    // Guarantees content is visible even if observer never fires
+    // (headless renderers, JS disabled, slow connections, below-fold)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible), .stagger:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 2500);
   </script>
 </head>
 <body>
